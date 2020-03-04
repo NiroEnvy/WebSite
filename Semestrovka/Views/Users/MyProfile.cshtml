@@ -1,0 +1,102 @@
+﻿@model Semestrovka.Models.DBModels.Users
+
+@*<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->*@
+
+<div class="well">
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active in" name="home">
+            @using (Html.BeginForm("Edit", "Users", default, new
+            {
+                id = "tab"
+            }))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Firstname)
+                    @Html.EditorFor(x => x.Firstname)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Middlename)
+                    @Html.EditorFor(x => x.Middlename)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Lastname)
+                    @Html.EditorFor(x => x.Lastname)
+                </div>
+
+                <div class="form-group editor-field">
+                    @Html.LabelFor(x => x.Address, new
+                    {
+                        @class = "editor-label"
+                    })
+                    @Html.EditorFor(x => x.Address)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Pass, new
+                    {
+                        @class = "editor-label"
+                    })
+                    @Html.PasswordFor(x => x.Pass, new
+                    {
+                        autocomplete = "off",
+                        required = "required"
+                    })
+                </div>
+                @Html.HiddenFor(x => x.Login)
+                @Html.HiddenFor(x => x.Token)
+
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary"/>
+                </div>
+            }
+            <table cellspacing="0" class="shop_table cart">
+                <thead>
+                <tr>
+                    <th class="product-empty">&nbsp;</th>
+                    <th class="product-thumbnail">Order date</th>
+                    <th class="product-name">Order</th>
+                    <th class="product-address">Address</th>
+                    <th class="product-subtotal">Contact</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                @foreach (var order in Model.Orders.ToList())
+                {
+                    <tr class="cart_item">
+                        <td @order. class="product-thumbnail">
+                            @order.Datecreated
+                        </td>
+
+                        <td class="product-name">
+                            @order.Id
+                        </td>
+
+                        <td class="product-price">
+                            @order.Address
+                        </td>
+                        @*Если большая покупка он делает скидку на доставку*@
+                        <td class="product-subtotal">
+                            @order.Email
+                        </td>
+                    </tr>
+                }
+                </tbody>
+
+            </table>
+
+            <div class="Login-row">
+                @Html.ActionLink("Log Out", "LogOut", "Users", default, new
+                {
+                    @class = "Field-button Field-button--facebook",
+                    InputType = "Button"
+                })
+            </div>
+        </div>
+    </div>
+</div>

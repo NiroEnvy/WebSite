@@ -1,0 +1,25 @@
+﻿@model Semestrovka.Models.DBModels.Product
+@{
+    ViewBag.Title = "Редактирование";
+}
+<!-- Установка атрибута asp-route-id позволяет при отправке данных вместе 
+с ними также отправить и значение Model.Id-->
+  
+<form asp-action="edit" asp-controller="DataBase" asp-route-id="@Model.Id">
+    
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Название</label>
+        <input type="text" asp-for="Name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Producer" class="control-label">Компания</label>
+        <input type="text" asp-for="Producer" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label">Цена</label>
+        <input type="number" asp-for="Price" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send" class="btn btn-default"/>
+    </div>
+</form>

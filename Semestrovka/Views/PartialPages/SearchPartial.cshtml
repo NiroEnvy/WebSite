@@ -1,0 +1,12 @@
+﻿@using System.IO
+@using Semestrovka.Controllers
+
+<div class="col-md-4">
+    <div class="single-sidebar">
+        <h2 class="sidebar-title">Search Products</h2>
+        <form asp-action="SearchResults" asp-controller="DataBase">
+            <input type="text" name="searchString" placeholder="Search products...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</div>

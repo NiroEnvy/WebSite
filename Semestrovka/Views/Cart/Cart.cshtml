@@ -1,0 +1,163 @@
+﻿@using Semestrovka.Models.DBModels
+@model IEnumerable<Semestrovka.Models.DBModels.Product>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+
+<body>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @await Html.PartialAsync("~/Views/PartialPages/SearchPartial.cshtml")
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <form method="post" action="#">
+                             <table cellspacing="0" class="shop_table cart">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="product-remove">&nbsp;</th>
+                                                                        <th class="product-thumbnail">&nbsp;</th>
+                                                                        <th class="product-price">Price</th>
+                                                                        <th class="product-subtotal">Delivery</th>
+                                                                    </tr>
+                                                                </thead>
+                            
+                                                                <tbody>
+                            
+                                                                    @foreach (var product in Model)
+                                                                    {
+                                                                        <tr class="cart_item">
+                                                                            <td class="product-remove">
+                                                                                <img src="@product.MainpictureurlNavigation.Imagepath" alt="">
+                                                                            </td>
+                                                                            <td class="product-thumbnail">
+                                                                                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                                                                                    @product.Name
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                            
+                                                                            <td class="product-price">
+                                                                                <a>@product.Price</a>
+                                                                            </td>
+
+                                                                            <td class="product-subtotal">
+                                                                                <span class="amount">@{ var i = product.Price > 150000 ? 0 : 1200; } @i</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                </tbody>
+                            
+                                                            </table>
+                    </form>
+
+                    <div class="cart-collaterals">
+                        <div class="cross-sells">
+                            <h2>You may be interested in...</h2>
+                            <ul class="products">
+                                @{
+                                    foreach (var product in (List<Product>) ViewBag.RelatedProducts)
+                                    {
+                                        <li class="product">
+                                            <a asp-area="" asp-controller="Other" asp-action="SingleProduct">
+                                                <img width="325" height="325" alt="T_4_front"
+                                                     class="attachment-shop_catalog wp-post-image" src="@product.MainpictureurlNavigation.Imagepath">
+                                                <h3>@product.Name</h3>
+                                                <span class="price">
+                                                    <span class="amount">@product.Price</span>
+                                                </span>
+                                            </a>
+
+                                            <a class="add_to_cart_button" data-quantity="1" data-product_sku=""
+                                               data-product_id="22" rel="nofollow" a asp-area="" asp-controller="Other" asp-action="SingleProduct">
+                                                Select
+                                                options
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+
+
+                        <div class="cart_totals ">
+                            <h2>Cart Totals</h2>
+
+                            <table cellspacing="0">
+                                <tbody>
+                                <tr class="cart-subtotal">
+                                    <th>Cart Subtotal</th>
+                                    <td>
+                                        <span class="amount">@Model.Sum(x => x.Price)</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="shipping">
+                                    <th>Shipping and Handling</th>
+                                    <td>Free Shipping</td>
+                                </tr>
+
+                                <tr class="order-total">
+                                    <th>Order Total</th>
+                                    <td>
+                                        <strong>
+                                            <span class="amount">@Model.Sum(x => x.Price)</span>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+    <form method="post" action="#" class="shipping_calculator">
+        <h2>
+            <a class="shipping-calculator-button" data-toggle="collapse"
+               href="#calcalute-shipping-wrap" aria-expanded="false"
+               aria-controls="calcalute-shipping-wrap">
+                Calculate Shipping
+            </a>
+        </h2>
+
+        <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
+
+
+            <p class="form-row form-row-wide">
+                <input type="text" id="calc_shipping_state"
+                       name="calc_shipping_state"
+                       placeholder="State / county" value=""
+                       class="input-text">
+            </p>
+
+            <p class="form-row form-row-wide">
+                <input type="text" id="calc_shipping_postcode"
+                       name="calc_shipping_postcode"
+                       placeholder="Postcode / Zip" value=""
+                       class="input-text">
+            </p>
+
+
+            <p>
+                <button class="button" value="1" name="calc_shipping" type="submit">
+                    Update
+                    Totals
+                </button>
+            </p>
+
+        </section>
+    </form>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</body>

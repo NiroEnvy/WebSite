@@ -1,0 +1,164 @@
+﻿@model Semestrovka.Models.DBModels.Users
+@{
+    ViewBag.Title = "LogIn";
+}
+<link rel="stylesheet" href="~/css/Login.css"/>
+<script src="~/js/site.js"></script>
+
+<div style="text-align: center;">
+    <div class="form-group">
+        <div class="Login-Wrap">
+            @using (Html.BeginForm("Create", "Users", FormMethod.Post))
+            {
+                <div class="Field Field--half">
+                    @Html.TextBoxFor(users => users.Firstname, new
+                    {
+                        @class = "Field-text",
+                        pattern = @"[^\s]+",
+                        placeholder = "Firstname",
+                        required = "required",
+                        autocomplete = "off",
+                        oninput = "validateComments(this)"
+                    })
+                    @Html.LabelFor(users => users.Firstname, "Firstname", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+                <div class="Field Field--half">
+                    @Html.TextBoxFor(users => users.Lastname, new
+                    {
+                        @class = "Field-text",
+                        pattern = @"[^\s]+",
+                        placeholder = "Lastname",
+                        required = "required",
+                        autocomplete = "off",
+                        oninput = "validateComments(this)"
+                    })
+                    @Html.LabelFor(users => users.Lastname, "Lastname", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+                <div class="Field Field--half">
+                    @Html.TextBoxFor(users => users.Login, new
+                    {
+                        @class = "Field-text",
+                        pattern = @"[^\s]+",
+                        placeholder = "Login",
+                        autocomplete = "off",
+                        required = "required",
+                        maxlength = 255,
+                        oninput = "validateComments(this)"
+                    })
+                    @Html.LabelFor(users => users.Login, "Login", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+                <div class="Field Field--half">
+                    @Html.PasswordFor(users => users.Pass, new
+                    {
+                        @class = "Field-text",
+                        placeholder = "Password",
+                        autocomplete = "off",
+                        required = "required",
+                        oninput = "validateComments(this)"
+                    })
+                    @Html.LabelFor(users => users.Pass, "Password", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+
+                <div class="Login-row">
+                    <input type="submit" value="Sign Up" class="Field-button Field-button--submit"/>
+                </div>
+            }
+            <div class="separator Field Field--full" style="padding: 0; height: 0">OR</div>
+            @using (Html.BeginForm("Auth", "Users", FormMethod.Post))
+            {
+                <div class="Field Field--full">
+                    @Html.TextBox("log", "", new
+                    {
+                        @class = "Field-text",
+                        placeholder = "Login",
+                        autocomplete = "off"
+                    })
+                    @Html.LabelFor(users => users.Login, "Login", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+                <div class="Field Field--full">
+                    @Html.PasswordFor(users => users.Pass, new
+                    {
+                        @class = "Field-text",
+                        placeholder = "Password",
+                        autocomplete = "off"
+                    })
+                    @Html.LabelFor(users => users.Pass, "Password", new
+                    {
+                        @class = "Field-label"
+                    })
+                </div>
+
+                <div class="Login-row">
+                    <input type="submit" value="Sign In" class="Field-button Field-button--facebook"/>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@*@using (Html.BeginForm("Create", "Users",FormMethod.Post))
+{
+    <div style="text-align: center;">
+        <div class="form-group">
+            @Html.LabelFor(users => users.Firstname, "Firstname", new
+            {
+                style = "font-size: 2em"
+            })
+            @Html.TextBoxFor(users => users.Firstname, new
+            {
+                @class = "form-control",
+                placeholder="Your firstname"
+            })
+        </div>
+         <div class="form-group ">
+             @Html.LabelFor(users => users.Lastname, "Lastname", new
+             {
+                 style = "font-size: 2em"
+             })
+             @Html.TextBoxFor(users => users.Lastname, new
+             {
+                 @class = "form-control",
+                 placeholder="Your lastname"
+             })
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(users => users.Login, "Login *", new
+            {
+                style = "font-size: 2em"
+            })
+            @Html.TextBoxFor(users => users.Login, new
+            {
+                @class = "form-control"
+            })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(users => users.Pass, "Password *", new
+            {
+                style = "font-size: 2em"
+            })
+            @Html.TextBoxFor(users => users.Pass, new
+            {
+                @class = "form-control"
+            })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Send" class="btn btn-default"/>
+        </div>
+    </div>
+    </div>
+}*@

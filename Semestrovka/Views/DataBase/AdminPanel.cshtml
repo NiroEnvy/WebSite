@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Semestrovka.Models.DBModels.Product>
+@{
+    ViewBag.Title = "Все предметы";
+}
+ 
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr align="center" valign="center">
+            <td><img width="5%" height="5%" src="@item.MainpictureurlNavigation.Imagepath.Replace("~","") "></td>
+            <td>@item.Name</td>
+            <td ><a asp-action="Details" asp-controller="DataBase" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="DataBase" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Delete" asp-controller="DataBase" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
