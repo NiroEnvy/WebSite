@@ -15,7 +15,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
-        <PackageReference Include="Npgsql" Version="4.1.2" />
+        <PackageReference Include="Npgsql" Version="4.1.13" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
         <PackageReference Include="Npgsql.NodaTime" Version="4.1.2" />
     </ItemGroup>
